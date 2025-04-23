@@ -1,0 +1,35 @@
+import matplotlib.pyplot as plt
+
+# Confusion matrix values
+TP = 80   # True Positives
+FP = 20   # False Positives
+TN = 90   # True Negatives
+FN = 10   # False Negatives
+
+# Calculating PPV and NPV
+PPV = TP / (TP + FP)
+NPV = TN / (TN + FN)
+
+# Print values
+print("Positive Predictive Value (PPV): {:.2f}".format(PPV))
+print("Negative Predictive Value (NPV): {:.2f}".format(NPV))
+
+# Bar chart for PPV and NPV
+values = [PPV, NPV]
+labels = ['PPV', 'NPV']
+colors = ['skyblue', 'lightgreen']
+
+plt.figure(figsize=(6, 4))
+bars = plt.bar(labels, values, color=colors)
+plt.ylim(0, 1)
+plt.ylabel("Value")
+plt.title("Positive Predictive Value vs Negative Predictive Value")
+
+# Annotate values on bars
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2, yval + 0.02, f"{yval:.2f}", ha='center', fontsize=12)
+
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.tight_layout()
+plt.show()
